@@ -83,13 +83,16 @@ folder_path = "."
 extension = ".txt"
 new_folder_name=["train", "val"]
 ratio_train=0.7
-total_img=len(new_folder_name)
+
+original_name=get_numbered_files(folder_path,extension) 
+total_img=len(original_name)
 num_img=[int(total_img*ratio_train),total_img]
 
+print(num_img)
 
 for name in new_folder_name:
     make_folder(name)
-for i,p in enumerate(get_numbered_files(folder_path,extension) ):
+for i,p in enumerate(original_name):
     if i <  num_img[0]: copy_rename_file( folder_path+"/"+p ,folder_path+"/"+new_folder_name[0] , new_folder_name[0] +str(i) )
     if num_img[0]<= i  <num_img[1] : copy_rename_file( folder_path+"/"+p ,folder_path+"/"+new_folder_name[1] , new_folder_name[1] +str(i) )
 
